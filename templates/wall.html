@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>The Wall</title>
+  </head>
+  <body>
+    <div id= "header">
+      <h3>CodingDojo Wall</h3> Welcome! <a href="#">Log Off</a>
+    </div>
+    <div id= "wallmessages">
+      <h4>Post a message</h4>
+      <form action="/message" method="post">
+        <p><textarea rows="4" cols="50" name="message"></textarea></p>
+        <p><input type="submit" value="Post a message"></p>
+      </form>
+            {% for message in all_messages:%}
+      <table>
+        <tr>
+          <td><p class="msghead">{{message["first_name"]}} {{message["last_name"]}} {{message["DATE_FORMAT(messages.created_at,'%b %d %Y')"]}}</p>
+              <p class="msgbody">{{message["message"]}}</p>
+          </td>
+        </tr>
+      </table>
+                {% for comment in all_comments:%}
+      <table>
+        <tr>
+          <td><p class="commenthead">{{comment["first_name"]}} {{comment["last_name"]}} {{comment["DATE_FORMAT(comments.created_at,'%b %d %Y')"]}}</p>
+              <p class="commentbody">{{comment["comment"]}}</p>
+          </td>
+        </tr>
+      </table>
+                {% endfor %}
+      <p>Post a comment</p>
+      <form action="/comment" method="post">
+        <p><textarea rows="4" cols="50" name="comment"></textarea></p>
+        <p><input type="submit" value="Post a comment"></p>
+      </form>
+            {% endfor %}
+            {% for comment in all_comments:%}
+      <!-- <table>
+        <tr>
+          <td><p class="commenthead">{{comment["first_name"]}} {{comment["last_name"]}} {{comment["DATE_FORMAT(comments.created_at,'%b %d %Y')"]}}</p>
+              <p class="commentbody">{{comment["comment"]}}</p>
+          </td>
+        </tr>
+      </table>
+            {% endfor %}
+      <p>Post a comment</p>
+      <form action="/comment" method="post">
+        <p><textarea rows="4" cols="50" name="comment"></textarea></p>
+        <p><input type="submit" value="Post a comment"></p>
+      </form> -->
+    </div>
+  </body>
+</html>
